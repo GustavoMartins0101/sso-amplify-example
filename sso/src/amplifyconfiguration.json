@@ -1,0 +1,36 @@
+{
+  "auth": {
+    "plugins": {
+      "awsCognitoAuthPlugin": {
+        "IdentityManager": {
+          "Default": {}
+        },
+        "CognitoUserPool": {
+          "Default": {
+            "PoolId": "us-east-1_5mZRCRPoB",
+            "AppClientId": "4lbbfl3mdamljr54fhsc3l275e",
+            "Region": "us-east-1"
+          }
+        },
+        "Auth": {
+          "Default": {
+            "authenticationFlowType": "USER_SRP_AUTH",
+            "OAuth": {
+              "WebDomain": "https://comerc3.auth.us-east-1.amazoncognito.com",
+              "AppClientId": "4lbbfl3mdamljr54fhsc3l275e",
+              "SignInRedirectURI": "http://localhost:5173/",
+              "SignOutRedirectURI": "http://localhost:5173/",
+              "Scopes": [
+                "phone",
+                "email",
+                "openid",
+                "profile",
+                "aws.cognito.signin.user.admin"
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}
