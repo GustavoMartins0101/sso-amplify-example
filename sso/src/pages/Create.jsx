@@ -1,7 +1,7 @@
 import { signUp } from "aws-amplify/auth";
 import { Amplify } from "aws-amplify";
 
-import { navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 export const Create = () => {
@@ -37,18 +37,20 @@ export const Create = () => {
         },
       });
 
-      const { user } = await signUp({
+      const response = await signUp({
         username: username,
         password: password,
-        attributes: {
-          name: name,
-          email: email,
-          given_name: givename,
-          middle_name: middlename,
-          preferred_username: preferredUsername,
-          picture: "teste",
+        options: {
+          userAttributes: {
+            name: name,
+            email: email,
+            given_name: givename,
+            middle_name: middlename,
+          },
         },
       });
+
+      console.log(response);
 
       alert("Usuario criado com sucesso");
       navigate("/auth");
@@ -111,15 +113,6 @@ export const Create = () => {
           className="h-10 rounded p-2"
           placeholder="Nome do Meio"
           onChange={(e) => setMiddlename(e.currentTarget.value)}
-        />
-      </div>
-      <div className="flex flex-col">
-        <label className="text-left">Apelido</label>
-        <input
-          type="text"
-          className="h-10 rounded p-2"
-          placeholder="Apelido"
-          onChange={(e) => setPreferredUsername(e.currentTarget.value)}
         />
       </div>
       <div className="flex flex-col gap-4">
